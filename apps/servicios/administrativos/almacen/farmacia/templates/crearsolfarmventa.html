@@ -20,8 +20,9 @@
 	<script type="text/html" id="itemsolfarm-template">
 		{% for forms in formset %}
 			<tr id="itemsolfarm-__prefix__">
-				<td>{{ forms.cantidad_surtida }}</td>
-				<td>{{ forms.cantidad_recetada }}</td>
+        <!-- agruege una clase a cada td para poder diferenciarlo -->
+				<td class="cantidad_surtida">{{ forms.cantidad_surtida }}</td>
+				<td class="cantidad_recetada">{{ forms.cantidad_recetada }}</td>
 				<td>{{ forms.medicamento }}</td>
 			</tr>
 		{% endfor %}
@@ -41,16 +42,18 @@
 				$('tbody.itemsolfarms').append(compiledTmpl);
 				$('#id_itemsolfarm_set-TOTAL_FORMS').attr('value', count + 1);
 
-				var cantidad_surtida = `.itemsolfarms #itemsolfarm-${ count } td input`
+        // aqui poniamos td lo cambie por la clase q agregue arriba de otro modo afecta a todos los inputs y agrega los atributos del ultimo q se ejecuta
+				var cantidad_surtida = `.itemsolfarms #itemsolfarm-${ count } .cantidad_surtida input`
 				console.log(cantidad_surtida)
 				$(cantidad_surtida).attr('name', 'itemsolfarm_set-' + count + '-cantidad_surtida');
 				$(cantidad_surtida).attr('id', 'id_itemsolfarm_set-' + count + '-cantidad_surtida');
 
-				var cantidad_recetada = `.itemsolfarms #itemsolfarm-${ count } td input`
+                            // aqui poniamos td lo cambie por la clase q agregue arriba
+				var cantidad_recetada = `.itemsolfarms #itemsolfarm-${ count } .cantidad_recetada input`
 				console.log(cantidad_recetada)
 				$(cantidad_recetada).attr('name', 'itemsolfarm_set-' + count + '-cantidad_recetada');
 				$(cantidad_recetada).attr('id', 'id_itemsolfarm_set-' + count + '-cantidad_recetada');
-				
+
 				var medicamento = `.itemsolfarms #itemsolfarm-${ count } td select`
 				$(medicamento).attr('name', 'itemsolfarm_set-' + count + '-medicamento');
 				$(medicamento).attr('id', 'id_itemsolfarm_set-' + count + '-medicamento');
