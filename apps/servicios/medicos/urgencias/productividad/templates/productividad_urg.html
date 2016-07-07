@@ -1,0 +1,401 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block titulo %}Inicio{% endblock titulo %}
+
+{% block nav_links %}
+	<form class="navbar-form navbar-right" action="." method="GET">
+    	{% csrf_token %}
+    	<div class="form-group">
+	    	<select name="mes" id="mes" class="form-control">
+	    		<option value="01">Enero</option>
+				<option value="02">Febrero</option>
+				<option value="03">Marzo</option>
+				<option value="04">Abril</option>
+				<option value="05">Mayo</option>
+				<option value="06">Junio</option>
+				<option value="07">Julio</option>
+				<option value="08">Agosto</option>
+				<option value="09">Septiembre</option>
+				<option value="10">Octubre</option>
+				<option value="11">Noviembre</option>
+				<option value="12">Diciembre</option>
+	    	</select>
+    	</div>
+    	<button type="submit" class="btn btn-default"><span class="fa fa-bar-chart"></span></button>
+    </form>
+{% endblock nav_links %}
+
+{% block contenido %}
+	<div class="container">
+		{% if mes %}
+			<h1 class="text-center">Productividad del mes: {{ mes }} año: {{ anio }}</h1>
+			<hr>
+			<div class="row" id="matutino">
+			    <h2 class="text-center">Turno Matutino</h2>
+				<div class="col-lg-5">
+					<table class="table table-striped table-bordered table-hover table-condensed">
+						<thead>
+							<tr>
+								<th>Medico</th>
+								<th>Nombre</th>
+								<th>Consultas</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for d in matutino %}
+					    		<tr>
+					    			<td>{{ d.medico }}</td>
+					    			<td>{{ d.nombre }}</td>
+					    			<td>{{ d.total }}</td>
+					    		</tr>
+							{% endfor %}
+						</tbody>
+					</table>	
+			    </div>
+				<div class="col-lg-6 col-sm-10">
+					<canvas id="graf_mat" height="450" width="600"></canvas>
+				</div>
+			</div>
+			<hr>
+			<div class="row" id="vespertino">
+				<h2 class="text-center">Turno Vespertino</h2>
+				<div class="col-lg-5">
+					<table class="table table-striped table-bordered table-hover table-condensed">
+						<thead>
+							<tr>
+								<th>Medico</th>
+								<th>Nombre</th>
+								<th>Consultas</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for d in vespertino %}
+					    		<tr>
+					    			<td>{{ d.medico }}</td>
+					    			<td>{{ d.nombre }}</td>
+					    			<td>{{ d.total }}</td>
+					    		</tr>
+							{% endfor %}
+						</tbody>
+					</table>	
+			    </div>
+				<div class="col-lg-6 col-sm-10">
+					<canvas id="graf_vesp" height="450" width="600"></canvas>
+				</div>
+			</div>
+			<hr>
+			<div class="row" id="noct_a">
+				<h2 class="text-center">Turno Nocturno A</h2>
+				<div class="col-lg-5">
+					<table class="table table-striped table-bordered table-hover table-condensed">
+						<thead>
+							<tr>
+								<th>Medico</th>
+								<th>Nombre</th>
+								<th>Consultas</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for d in noct_a %}
+					    		<tr>
+					    			<td>{{ d.medico }}</td>
+					    			<td>{{ d.nombre }}</td>
+					    			<td>{{ d.total }}</td>
+					    		</tr>
+							{% endfor %}
+						</tbody>
+					</table>	
+			    </div>
+				<div class="col-lg-6 col-sm-10">
+					<canvas id="graf_noct_a" height="450" width="600"></canvas>
+				</div>
+			</div>
+			<hr>
+			<div class="row" id="noct_b">
+				<h2 class="text-center">Turno Nocturno B</h2>
+				<div class="col-lg-5">
+					<table class="table table-striped table-bordered table-hover table-condensed">
+						<thead>
+							<tr>
+								<th>Medico</th>
+								<th>Nombre</th>
+								<th>Consultas</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for d in noct_b %}
+					    		<tr>
+					    			<td>{{ d.medico }}</td>
+					    			<td>{{ d.nombre }}</td>
+					    			<td>{{ d.total }}</td>
+					    		</tr>
+							{% endfor %}
+						</tbody>
+					</table>	
+			    </div>
+				<div class="col-lg-6 col-sm-10">
+					<canvas id="graf_noct_b" height="450" width="600"></canvas>
+				</div>
+			</div>
+			<hr>
+			<div class="row" id="esp_dia">
+				<h2 class="text-center">Turno Especial Día</h2>
+				<div class="col-lg-5">
+					<table class="table table-striped table-bordered table-hover table-condensed">
+						<thead>
+							<tr>
+								<th>Medico</th>
+								<th>Nombre</th>
+								<th>Consultas</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for d in esp_dia %}
+					    		<tr>
+					    			<td>{{ d.medico }}</td>
+					    			<td>{{ d.nombre }}</td>
+					    			<td>{{ d.total }}</td>
+					    		</tr>
+							{% endfor %}
+						</tbody>
+					</table>	
+			    </div>
+				<div class="col-lg-6 col-sm-10">
+					<canvas id="graf_esp_dia" height="450" width="600"></canvas>
+				</div>
+			</div>
+			<hr>
+			<div class="row" id="esp_noct">
+				<h2 class="text-center">Turno Especial Nocturno</h2>
+				<div class="col-lg-5">
+					<table class="table table-striped table-bordered table-hover table-condensed">
+						<thead>
+							<tr>
+								<th>Medico</th>
+								<th>Nombre</th>
+								<th>Consultas</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for d in esp_noct %}
+					    		<tr>
+					    			<td>{{ d.medico }}</td>
+					    			<td>{{ d.nombre }}</td>
+					    			<td>{{ d.total }}</td>
+					    		</tr>
+							{% endfor %}
+						</tbody>
+					</table>	
+			    </div>
+				<div class="col-lg-6 col-sm-10">
+					<canvas id="graf_esp_noct" height="450" width="600"></canvas>
+				</div>
+			</div>
+			<br>
+		{% else %}
+			<div class="container">
+				<div class="row">
+					<br>
+					<div class="col-lg-12 col-xs-12 col-lg-offset-3 logos-causes">
+						<div class="col-lg-3 col-xs-6">
+							<img class="img-responsive" src="{% static 'img/logo_hgsjr.jpg' %}" alt="Logo-HGSJR">
+						</div>
+						<div class="col-lg-3 col-xs-6">
+							<img class="img-responsive" src="{% static 'img/logo_ssa.jpg' %}" alt="Logo-SSA">
+						</div>
+					</div>
+					<div class="col-lg-12 col-xs-12 col-lg-offset-4 col-xs-offset-1">
+						<div class="col-lg-4 col-xs-10">
+							<img class="img-responsive" src="{% static 'img/SIHos_512.png' %}" alt="Logo-HGSJR">
+						</div>
+					</div>
+					<h2 class="text-center titulo-sihos">Sistema de Información Hospitalaria</h2>
+					<h1 class="text-center titulo-prod">Productividad de Urgencias 2015</h1>
+					<br>
+				</div>
+			</div>
+		{% endif %}
+	</div>
+
+	<!-- Genera las graficas -->
+	<script >
+		var med_mat = [
+			{% for mat in matutino %}
+	    		"{{ mat.medico }}",
+    		{% endfor %}
+		];
+
+		var cons_mat = [
+			{% for mat in matutino %}
+	    		{{ mat.total }},
+    		{% endfor %}
+		];
+
+		var med_vesp = [
+			{% for vesp in vespertino %}
+	    		"{{ vesp.medico }}",
+    		{% endfor %}
+		];
+
+		var cons_vesp = [
+			{% for vesp in vespertino %}
+	    		{{ vesp.total }},
+    		{% endfor %}
+		];
+
+		var med_noct_a = [
+			{% for na in noct_a %}
+	    		"{{ na.medico }}",
+    		{% endfor %}
+		];
+
+		var cons_noct_a = [
+			{% for na in noct_a %}
+	    		{{ na.total }},
+    		{% endfor %}
+		];
+
+		var med_noct_b = [
+			{% for nb in noct_b %}
+	    		"{{ nb.medico }}",
+    		{% endfor %}
+		];
+
+		var cons_noct_b = [
+			{% for nb in noct_b %}
+	    		{{ nb.total }},
+    		{% endfor %}
+		];
+
+		var med_esp_dia = [
+			{% for ed in esp_dia %}
+	    		"{{ ed.medico }}",
+    		{% endfor %}
+		];
+
+		var cons_esp_dia = [
+			{% for ed in esp_dia %}
+	    		{{ ed.total }},
+    		{% endfor %}
+		];
+
+		var med_esp_noct = [
+			{% for en in esp_noct %}
+	    		"{{ en.medico }}",
+    		{% endfor %}
+		];
+
+		var cons_esp_noct = [
+			{% for en in esp_noct %}
+	    		{{ en.total }},
+    		{% endfor %}
+		];
+
+		var GrafMat = {
+			labels : med_mat,
+			datasets : [
+				{
+					fillColor: "rgba(151,187,205,0.5)",
+		            strokeColor: "rgba(151,187,205,0.8)",
+		            highlightFill: "rgba(151,187,205,0.75)",
+		            highlightStroke: "rgba(151,187,205,1)",
+					data : cons_mat
+				},
+			],
+		};
+
+		var GrafVesp = {
+			labels : med_vesp,
+			datasets : [
+				{
+					fillColor: "rgba(151,187,205,0.5)",
+		            strokeColor: "rgba(151,187,205,0.8)",
+		            highlightFill: "rgba(151,187,205,0.75)",
+		            highlightStroke: "rgba(151,187,205,1)",
+					data : cons_vesp
+				},
+			],
+		};
+
+		var GrafNoctA = {
+			labels : med_noct_a,
+			datasets : [
+				{
+					fillColor: "rgba(151,187,205,0.5)",
+		            strokeColor: "rgba(151,187,205,0.8)",
+		            highlightFill: "rgba(151,187,205,0.75)",
+		            highlightStroke: "rgba(151,187,205,1)",
+					data : cons_noct_a
+				},
+			],
+		};
+
+		var GrafNoctB = {
+			labels : med_noct_b,
+			datasets : [
+				{
+					fillColor: "rgba(151,187,205,0.5)",
+		            strokeColor: "rgba(151,187,205,0.8)",
+		            highlightFill: "rgba(151,187,205,0.75)",
+		            highlightStroke: "rgba(151,187,205,1)",
+					data : cons_noct_b
+				},
+			],
+		};
+
+		var GrafEspDia = {
+			labels : med_esp_dia,
+			datasets : [
+				{
+					fillColor: "rgba(151,187,205,0.5)",
+		            strokeColor: "rgba(151,187,205,0.8)",
+		            highlightFill: "rgba(151,187,205,0.75)",
+		            highlightStroke: "rgba(151,187,205,1)",
+					data : cons_esp_dia
+				},
+			],
+		};
+
+		var GrafEspNoct = {
+			labels : med_esp_noct,
+			datasets : [
+				{
+					fillColor: "rgba(151,187,205,0.5)",
+		            strokeColor: "rgba(151,187,205,0.8)",
+		            highlightFill: "rgba(151,187,205,0.75)",
+		            highlightStroke: "rgba(151,187,205,1)",
+					data : cons_esp_noct
+				},
+			],
+		};
+
+		window.onload = function(){
+			var ctx_1 = document.getElementById("graf_mat").getContext("2d");
+			window.myBar = new Chart(ctx_1).Bar(GrafMat, {
+				responsive : true, 
+			});
+			var ctx_2 = document.getElementById("graf_vesp").getContext("2d");
+			window.myBar = new Chart(ctx_2).Bar(GrafVesp, {
+				responsive : true, 
+			});
+			var ctx_3 = document.getElementById("graf_noct_a").getContext("2d");
+			window.myBar = new Chart(ctx_3).Bar(GrafNoctA, {
+				responsive : true, 
+			});
+			var ctx_4 = document.getElementById("graf_noct_b").getContext("2d");
+			window.myBar = new Chart(ctx_4).Bar(GrafNoctB, {
+				responsive : true, 
+			});
+			var ctx_5 = document.getElementById("graf_esp_dia").getContext("2d");
+			window.myBar = new Chart(ctx_5).Bar(GrafEspDia, {
+				responsive : true, 
+			});
+			var ctx_6 = document.getElementById("graf_esp_noct").getContext("2d");
+			window.myBar = new Chart(ctx_6).Bar(GrafEspNoct, {
+				responsive : true, 
+			});
+		}
+	</script>
+{% endblock contenido %}

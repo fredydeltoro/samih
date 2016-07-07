@@ -1,0 +1,21 @@
+{% extends "base_sesiones.html" %}
+
+{% load static from staticfiles %}
+
+{% block titulo %}Iniciar sesión{% endblock titulo %}
+
+{% block estilos_css %}
+	<link rel="stylesheet" href="{% static 'css/sihos_inicio.css' %}">
+{% endblock estilos_css %}
+
+{% block formulario %}
+	<h2>Iniciar sesión</h2>
+	<p>Por favor ingrese sus datos para iniciar sesión</p>
+	<form method="POST">
+		{% csrf_token %}
+		<p><input type="text" name="username" placeholder="Nombre de usuario" class="form-control input-lg"></p>
+		<p><input type="password" name="password" placeholder="Contraseña" class="form-control input-lg"></p>
+		<p><input type="submit" value="Iniciar" class="form-control input-lg btn btn-primary"></p>
+	</form>
+	<small>¿Eres nuevo? Da clic <a href="/registrarusuario/">aqui</a> para registrarte</small>
+{% endblock formulario %}

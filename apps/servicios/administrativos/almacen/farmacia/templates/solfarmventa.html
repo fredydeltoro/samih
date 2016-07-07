@@ -1,0 +1,93 @@
+{% extends "base_principal.html" %}
+
+{% load staticfiles %}
+
+{% block titulo %}Solicitud No.: {{ object.id }}{% endblock titulo %}
+
+{% block estilos_css %}
+	<link rel="stylesheet" href="{% static 'css/sihos_principal.css' %}">
+{% endblock estilos_css %}
+
+{% block menu_usuario %}
+    <li><a href="#"><span class="glyphicon glyphicon-user pull-right"></span> Editar Perfil</a></li>
+    <li><a href="#"><span class="glyphicon glyphicon-cog pull-right"></span> Configuración</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="/cerrarsesion/"><span class="glyphicon glyphicon-log-out pull-right"></span> Salir</a></li>
+{% endblock menu_usuario %}
+
+{% block menu_izquierdo %}
+    <li><a href="/farmacia/"><i class="fa fa-medkit" aria-hidden="true"></i> Farmacia</a></li>
+{% endblock menu_izquierdo %}
+
+{% block contenido %}
+	<div id="page-wrapper">
+		<div class="container-fluid">
+			<div class="row col-lg-12">
+                <div class="container-fluid">
+                	<div class="col-lg-12 col-xs-12 logos-causes">
+						<div class="col-lg-3 col-xs-6">
+							<img class="img-responsive" src="{% static 'img/logo_hgsjr.jpg' %}" alt="Logo-HGSJR">
+						</div>
+						<div class="col-lg-3 col-xs-6">
+							<img class="img-responsive" src="{% static 'img/logo_ssa.jpg' %}" alt="Logo-SSa">
+						</div>
+					</div>
+					<P class="text-center titulo-causes">HOSPITAL GENERAL DE SAN JUAN DEL RÍO</P>
+					<h3 class="text-center titulo-causes"><strong>Servicio de Farmacia</strong></h3>
+					<div class="clearfix"></div>
+					<div class="panel panel-primary">
+						<div class="panel-heading" style="padding-bottom: 30px;">
+							<p class="pull-left">Folio: {{ object.id }}</p>
+							<p class="pull-right">Fecha: {{ object.fecha_creacion|date:'SHORT_DATE_FORMAT' }}</p>
+						</div>
+						<div class="panel-body">
+							<p class="col-lg-6"><strong>Receta: </strong>{{ object.receta }}</p>
+							<p class="col-lg-12"><strong>Paciente: </strong>{{ object.paciente }}</p>
+						</div>
+					</div>
+					
+					<div class="clearfix"></div>
+					<div class="panel panel-primary">
+						<div class="panel-heading">Medicamentos</div>
+						<div class="panel-body">
+							<div class="table-responsive">
+								<table class="table table-striped table-bordered table-hover table-condensed">
+									<thead class="bg-info">
+										<tr>
+											<th class="text-center">Clave</th>
+											<th class="text-center">Surtido</th>
+											<th class="text-center">Recetado</th>
+											<th class="text-center">Medicamento</th>
+											<th class="text-center">U.Med</th>
+											<th class="text-center">F.Cad</th>
+											<th class="text-center">Lote</th>
+										</tr>
+									</thead>
+									<tbody>
+										{% for meds in object.itemsolfarm_set.all %}
+											<tr>
+												<td class="text-center">{{ meds.medicamento.clave_farmacia }}</td>
+												<td class="text-center">{{ meds.cantidad_surtida }}</td>
+												<td class="text-center">{{ meds.cantidad_recetada }}</td>
+												<td>{{ meds.medicamento }}</td>
+												<td class="text-center">{{ meds.medicamento.presentacion }}</td>
+												<td class="text-center">{{ meds.medicamento.fecha_caducidad|date:'SHORT_DATE_FORMAT' }}</td>
+												<td class="text-center">{{ meds.medicamento.lote }}</td>
+											</tr>
+										{% endfor %}
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="panel-footer"><strong>Médico: </strong>{{ object.medico }}</div>
+					</div>
+					<div class="botton-actions">
+						<a href="/farmacia/solfarmventapdf/{{ object.id }}" class="btn btn-primary" target="_blank"><i class="fa fa-print" aria-hidden="true"></i> Imprimir</a>
+						<a href="/farmacia/" class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i> Regresar</a>
+					</div>
+                </div>
+            </div> <!-- /.row -->
+		</div>
+	</div>
+	
+{% endblock contenido %}

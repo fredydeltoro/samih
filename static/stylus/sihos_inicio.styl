@@ -1,0 +1,161 @@
+@import "fonts.styl"
+
+body
+	padding-top 50px
+	font-family open_sanslight, sans-serif
+	background #FFF
+
+.navbar
+	background #FFF
+	margin 0
+	padding 0
+	
+#contenido-top
+	margin 0
+	padding-top 60px
+	padding-bottom 35px	
+
+#titular
+	background url(../img/fondo.jpg) no-repeat
+	margin 0
+	padding-top 45px	
+	padding-bottom 45px	
+
+	.logos-causes
+		padding 45px 0 25px 0
+		
+	.titulo-causes
+		font-size 55px
+		padding 30px 0 30px 0
+		
+	.buscar-causes
+		margin 0 30px 0 30px
+		
+.div-titular
+	margin-top 0
+
+.hgsjr
+	padding 0
+	&:before
+		content "\e600"
+		font-family icodrakons
+		font-size 25px
+
+#resultados
+	padding-bottom 20px
+	table
+		thead
+			tr
+				.enc-cie
+					width 132px
+
+				.enc-causes
+					width 132px
+					
+		tbody
+			tr
+				td
+					vertical-align center
+	
+	.badge
+		font-size 8px
+		padding 3px
+
+.des-causes
+	font-size 1.3em
+
+footer
+	background #202020
+	color #FFF
+	width 100%
+	//position fixed
+	//bottom 0
+	
+	.sihos	
+		padding 0
+		.path1
+			&:before
+				content "\e602"
+				font-family icodrakons
+				font-size 40px
+				margin-left -1.005em
+				color rgb(34, 64, 157)
+		.path2
+			&:before
+				content "\e603"
+				font-family icodrakons
+				font-size 40px
+				margin-left -1.005em
+				color rgb(15, 117, 189)
+		.path3
+			&:before
+				content "\e604"
+				font-family icodrakons
+				font-size 40px
+				margin-left -1.005em
+				color rgb(2, 158, 226)
+		.path4
+			&:before
+				content "\e605"
+				font-family icodrakons
+				font-size 40px
+				margin-left -1.005em
+				color rgb(8, 88, 170)
+		.path5
+			&:before
+				content "\e606"
+				font-family icodrakons
+				font-size 40px
+				margin-left -1.005em
+				color rgb(48, 198, 244)
+		.path6
+			&:before
+				content "\e607"
+				font-family icodrakons
+				font-size 40px
+				margin-left -1.005em
+				color rgb(0, 138, 209)
+		.path7
+			&:before
+				content "\e608"
+				font-family icodrakons
+				font-size 40px
+				color rgb(88, 88, 90)
+	p
+		margin 0
+		a
+			color #FFF
+		
+	.row
+		margin 10px
+
+
+@media screen and (max-width:480px)
+	#titular
+		background #FFF
+		margin 0
+		padding-top 5px	
+		padding-bottom 5px
+		
+		.logos-causes
+			padding 5px 0 25px 0
+		
+		.titulo-causes
+			font-size 29px
+			padding 30px 0 5px 0
+			
+		.buscar-causes
+			margin 0 5px 30px 5px
+	
+	.titulo-sihos
+		font-size 25px
+		
+	.titulo-prod
+		font-size 25px
+		margin 0 5px 0 5px
+
+//---causes.html-----------------------------		
+@import "causes.styl"
+
+//---base_usuarios.html-----------------------------		
+@import "usuarios.styl"

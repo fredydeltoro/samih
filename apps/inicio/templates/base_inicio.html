@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!--[if IE8]> <html lang="es class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="es">
+{% load staticfiles %}
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<title>SAMIH :: {% block titulo %}{% endblock titulo %}</title>
+		<!-- Archivos CSS -->
+			<link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.png' %}">
+			<link rel="stylesheet" href="{% static 'css/animate-3.5.1.css' %}">
+			<link rel="stylesheet" href="{% static 'css/bootstrap-3.3.6.min.css' %}">
+			<link rel="stylesheet" href="{% static 'css/font-awesome-4.6.3.min.css' %}">
+			{% block estilos_css %}{% endblock estilos_css %}
+		<!-- /Archivos CSS -->
+	</head>
+
+	<body>
+		<header>
+			<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					        <span class="sr-only">Toggle navigation</span>
+					        <span class="icon-bar"></span>
+					        <span class="icon-bar"></span>
+					        <span class="icon-bar"></span>
+				      	</button>
+				      	<a class="navbar-brand" href="/"><span class="hgsjr"></span></a>
+					</div><!-- /.navbar-header -->
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				    	{% block navegador %}{% endblock navegador %}
+				    </div><!-- /.navbar-collapse -->
+				</div><!-- /.container-fluid -->
+			</nav>
+			{% block encabezado %}{% endblock encabezado %}
+		</header>
+
+		{% block contenido %}{% endblock contenido %}
+		
+		<footer>
+			<div class="container">
+	    		<div class="row text-center">
+	    			<span class="sihos">
+	    				<span class="path7"></span>
+	    				<span class="path6"></span>
+	    				<span class="path5"></span>
+	    				<span class="path4"></span>
+	    				<span class="path3"></span>
+	    				<span class="path2"></span>
+	    				<span class="path1"></span>
+	    			</span>
+			    	<p><strong>Sistema Administrativo, Médico y de Información Hospitalaria</strong></p>
+					<p><a href="/admin/">by</a> DVLC</p>
+	    		</div>
+	    	</div>
+		</footer>
+
+		<!-- Archivos JS -->
+			<!--[if lt IE 9]>
+	            <script src="{% static 'js/html5shiv-3.7.2.min.js' %}"></script>
+	            <script src="{% static 'js/respond-1.4.2.min.js' %}"></script>
+	        <![endif]-->
+	        <script src="{% static 'js/jquery-2.2.3.min.js' %}"></script>
+	        <script src="{% static 'js/bootstrap-3.3.6.min.js' %}"></script>
+	        <script src="{% static 'js/angular-1.5.7.min.js' %}"></script>
+	        {% block scripts_js %}{% endblock scripts_js %}
+        <!-- /Archivos JS -->
+	</body>
+</html>

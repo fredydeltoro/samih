@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!--[if IE8]> <html lang="es class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="es">
+{% load staticfiles %}
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <title>SAMIH :: {% block titulo %}{% endblock titulo %}</title>
+        <!-- Archivos CSS -->
+            <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.png' %}">
+            <link rel="stylesheet" href="{% static 'css/animate-3.5.1.css' %}">
+            <link rel="stylesheet" href="{% static 'css/bootstrap-3.3.6.min.css' %}">
+            <link rel="stylesheet" href="{% static 'css/font-awesome-4.6.3.min.css' %}">
+            {% block estilos_css %}{% endblock estilos_css %}
+        <!-- /Archivos CSS -->
+    </head>
+
+  <body>
+    <div class="container-fluid">
+        <div class="row col-lg-4 col-lg-offset-4 col-sm-12 i-for">
+            <div class="col-lg-12 logos-baus">
+                <div class="col-lg-6 logo-hgsjr">
+                    <img class="img-responsive" src="{% static 'img/logo_hgsjr.jpg' %}" alt="Logo-HGSJR">
+                </div>
+                <div class="col-lg-6 logo-ssa">
+                    <img class="img-responsive" src="{% static 'img/logo_ssa.jpg' %}" alt="Logo-SSA">
+                </div>
+            </div>
+            {% block formulario %}{% endblock formulario %}
+            <div class="row text-center ft-for">
+                <hr>
+                <a href="/">
+                    <span class="sihos">
+                        <span class="path7"></span>
+                        <span class="path6"></span>
+                        <span class="path5"></span>
+                        <span class="path4"></span>
+                        <span class="path3"></span>
+                        <span class="path2"></span>
+                        <span class="path1"></span>
+                    </span>
+                </a>
+                <p><strong>Sistema Administrativo, Médico y de Información Hospitalaria</strong></p>
+                <p>by DVLC</p>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Archivos JS -->
+        <!--[if lt IE 9]>
+            <script src="{% static 'js/html5shiv-3.7.2.min.js' %}"></script>
+            <script src="{% static 'js/respond-1.4.2.min.js' %}"></script>
+        <![endif]-->
+        <script src="{% static 'js/jquery-2.2.3.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap-3.3.6.min.js' %}"></script>
+        <script src="{% static 'js/angular-1.5.7.min.js' %}"></script>
+        {% block scripts_js %}{% endblock scripts_js %}
+    <!-- /Archivos JS -->
+  </body>
+</html>

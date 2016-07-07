@@ -1,0 +1,25 @@
+{% extends "base_sesiones.html" %}
+
+{% load staticfiles %}
+
+{% block titulo %}Registrar usuario{% endblock titulo %}
+
+{% block estilos_css %}
+	<link rel="stylesheet" href="{% static 'css/sihos_inicio.css' %}">
+{% endblock estilos_css %}
+
+{% block formulario %}
+	<h2>Registrar usuario</h2>
+	<p>Por favor llene los siguientes campos para registrar un usuario</p>
+	<form method="POST">
+		{% csrf_token %}
+		<p><input type="text" name="username" placeholder="Nombre de usuario" class="form-control input-lg"></p>
+		<p><input type="email" name="email" placeholder="Correo Electrónico" class="form-control input-lg"></p>
+		<p><input type="password" name="password1" placeholder="Contraseña" class="form-control input-lg"></p>
+		<p><input type="password" name="password2" placeholder="Confirmar contraseña" class="form-control input-lg"></p>
+		<p><input type="submit" value="Registrarse" class="form-control input-lg btn btn-primary"></p>
+	</form>
+	<small>¿Ya estas registrado? Da clic <a href="/iniciarsesion/">aqui</a> para iniciar sesión</small>
+{% endblock formulario %}
+
+
